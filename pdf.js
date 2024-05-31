@@ -1,4 +1,4 @@
-/* Copyright 2012 Mozilla Foundation
+/* Copyright 2016 Mozilla Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,76 +13,54 @@
  * limitations under the License.
  */
 
-// eslint-disable-next-line max-len
-/** @typedef {import("./display/api").OnProgressParameters} OnProgressParameters */
-// eslint-disable-next-line max-len
-/** @typedef {import("./display/api").PDFDocumentLoadingTask} PDFDocumentLoadingTask */
-/** @typedef {import("./display/api").PDFDocumentProxy} PDFDocumentProxy */
-/** @typedef {import("./display/api").PDFPageProxy} PDFPageProxy */
-/** @typedef {import("./display/api").RenderTask} RenderTask */
-/** @typedef {import("./display/display_utils").PageViewport} PageViewport */
-
-import {
+const {
   AbortException,
+  AnnotationEditorLayer,
   AnnotationEditorParamsType,
   AnnotationEditorType,
+  AnnotationEditorUIManager,
+  AnnotationLayer,
   AnnotationMode,
-  CMapCompressionType,
-  createValidAbsoluteUrl,
-  FeatureTest,
-  ImageKind,
-  InvalidPDFException,
-  MissingPDFException,
-  normalizeUnicode,
-  OPS,
-  PasswordResponses,
-  PermissionFlag,
-  shadow,
-  UnexpectedResponseException,
-  Util,
-  VerbosityLevel,
-} from "./shared/util.js";
-import {
   build,
-  getDocument,
-  PDFDataRangeTransport,
-  PDFWorker,
-  version,
-} from "./display/api.js";
-import {
+  CMapCompressionType,
+  ColorPicker,
+  createValidAbsoluteUrl,
   DOMSVGFactory,
+  DrawLayer,
+  FeatureTest,
   fetchData,
+  getDocument,
   getFilenameFromUrl,
   getPdfFilenameFromUrl,
   getXfaPageViewport,
+  GlobalWorkerOptions,
+  ImageKind,
+  InvalidPDFException,
   isDataScheme,
   isPdfFile,
+  MissingPDFException,
   noContextMenu,
+  normalizeUnicode,
+  OPS,
+  Outliner,
+  PasswordResponses,
+  PDFDataRangeTransport,
   PDFDateString,
+  PDFWorker,
+  PermissionFlag,
   PixelsPerInch,
   RenderingCancelledException,
-  setLayerDimensions,
-} from "./display/display_utils.js";
-import {
   renderTextLayer,
+  setLayerDimensions,
+  shadow,
   TextLayer,
+  UnexpectedResponseException,
   updateTextLayer,
-} from "./display/text_layer.js";
-import { AnnotationEditorLayer } from "./display/editor/annotation_editor_layer.js";
-import { AnnotationEditorUIManager } from "./display/editor/tools.js";
-import { AnnotationLayer } from "./display/annotation_layer.js";
-import { ColorPicker } from "./display/editor/color_picker.js";
-import { DrawLayer } from "./display/draw_layer.js";
-import { GlobalWorkerOptions } from "./display/worker_options.js";
-import { Outliner } from "./display/editor/outliner.js";
-import { XfaLayer } from "./display/xfa_layer.js";
-
-/* eslint-disable-next-line no-unused-vars */
-const pdfjsVersion =
-  typeof PDFJSDev !== "undefined" ? PDFJSDev.eval("BUNDLE_VERSION") : void 0;
-/* eslint-disable-next-line no-unused-vars */
-const pdfjsBuild =
-  typeof PDFJSDev !== "undefined" ? PDFJSDev.eval("BUNDLE_BUILD") : void 0;
+  Util,
+  VerbosityLevel,
+  version,
+  XfaLayer,
+} = globalThis.pdfjsLib;
 
 export {
   AbortException,
