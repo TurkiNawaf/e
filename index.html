@@ -42,7 +42,7 @@
     <script type="module" src="pdf.js"></script>
     <script type="module" src="pdf.worker.js"></script>
     <script type="module">
-    import * as pdfjsLib from 'pdf.js'; // Adjust the path to pdf.js as needed
+    import * as pdfjsLib from '/src/pdf.js'; // Adjust the path to pdf.js as needed
     </script>
 
     <script>
@@ -63,7 +63,7 @@
         const url = 'med.pdf';
 
         // Load PDF
-        const loadingTask = /pdfjsLib.getDocument(url);
+        const loadingTask = pdfjsLib.getDocument(url);
         loadingTask.promise.then(pdf => {
             console.log('PDF loaded');
 
