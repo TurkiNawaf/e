@@ -39,8 +39,8 @@
 <body>
     <div id="pdfViewer"></div>
     <div class="watermark">Protected Content</div>
-    <script src="path/to/pdf.js"></script>
-    <script src="path/to/pdf.worker.js"></script>
+    <script src="pdf.js"></script>
+    <script src="pdf.worker.js"></script>
     <script>
         // Disable right-click
         document.addEventListener('contextmenu', event => event.preventDefault());
@@ -56,7 +56,7 @@
             }
         });
 
-        const url = 'path/to/your.pdf';
+        const url = 'med.pdf';
 
         // Load PDF
         const loadingTask = pdfjsLib.getDocument(url);
